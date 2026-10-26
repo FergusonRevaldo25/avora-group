@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Plane, BedDouble, Briefcase, MapPin, Home as HomeIcon, ShieldCheck, Star, Heart, UserRound, Phone, Mail, Globe } from "lucide-react";
 import Reveal from "@/components/Reveal";
+import Link from "next/link";
 import ContactForm from "@/components/ContactForm";
 
 const services = [
@@ -57,6 +58,8 @@ export default function HomePage() {
         className="fixed top-0 z-50 flex w-full items-center justify-between bg-cream/70 px-6 py-2 backdrop-blur-md md:px-12">
         <a href="#top"><Image src="/images/logo.png" alt="Avora Group" width={120} height={90} className="h-14 w-auto" priority /></a>
         <div className="hidden gap-10 text-xs tracking-[0.25em] uppercase md:flex">
+          <Link href="/travel" className="transition hover:text-gold">Travel</Link>
+          <Link href="/stays" className="transition hover:text-gold">Stays</Link>
           <a href="#services" className="transition hover:text-gold">Services</a>
           <a href="#destinations" className="transition hover:text-gold">Destinations</a>
           <a href="#why" className="transition hover:text-gold">Why Avora</a>
@@ -151,6 +154,30 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* WAYS TO BOOK */}
+      <section className="mx-auto grid max-w-6xl gap-6 px-6 pb-28 md:grid-cols-2">
+        <Reveal>
+          <Link href="/travel" className="group relative block h-80 overflow-hidden rounded-2xl">
+            <Image src="/images/flight.jpg" alt="" fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-110" />
+            <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/85 via-forest-deep/20 to-transparent" />
+            <div className="absolute bottom-0 p-8 text-cream">
+              <h3 className="font-display text-4xl">Book your travel</h3>
+              <p className="mt-2 opacity-80">Flights, tours and holiday packages</p>
+            </div>
+          </Link>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <Link href="/stays" className="group relative block h-80 overflow-hidden rounded-2xl">
+            <Image src="/images/hotel.jpg" alt="" fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-110" />
+            <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/85 via-forest-deep/20 to-transparent" />
+            <div className="absolute bottom-0 p-8 text-cream">
+              <h3 className="font-display text-4xl">Find a place to stay</h3>
+              <p className="mt-2 opacity-80">Choose your dates and request to book</p>
+            </div>
+          </Link>
+        </Reveal>
+      </section>
+
       {/* WHY */}
       <section id="why" className="mx-auto max-w-6xl px-6 pb-28">
         <div className="grid grid-cols-2 gap-10 md:grid-cols-5">
@@ -189,5 +216,6 @@ export default function HomePage() {
     </main>
   );
 }
+
 
 

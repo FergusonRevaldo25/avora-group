@@ -1,8 +1,10 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import { company } from "@/lib/company";
 
 const links: [string, string][] = [
-  ["About", "/about"], ["Travel", "/travel"], ["Stays", "/stays"], ["Corporate", "/corporate"],
+  ["About", "/about"], ["Travel", "/travel"], ["Trips", "/trips"], ["Destinations", "/destinations"],
+  ["Specials", "/specials"], ["Upcoming", "/upcoming"], ["Calendar", "/calendar"], ["How to Book", "/how-to-book"],
+  ["Gallery", "/gallery"], ["Stays", "/stays"], ["Corporate", "/corporate"],
   ["Property", "/property"], ["Blog", "/blog"], ["Partner with us", "/partners"], ["Privacy", "/privacy"], ["Terms", "/terms"],
 ];
 

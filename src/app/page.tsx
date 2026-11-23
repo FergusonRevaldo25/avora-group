@@ -14,11 +14,11 @@ const services = [
   { icon: BedDouble, title: "Accommodation", text: "From luxury resorts to boutique stays, we'll find the perfect place for you." },
   { icon: Briefcase, title: "Tours & Travel Packages", text: "Curated experiences for individuals, couples, families and groups." },
   { icon: MapPin, title: "Local & International", text: "Explore your local gems or discover new countries. We've got you covered." },
-  { icon: HomeIcon, title: "Property (Coming Soon)", text: "Investment and holiday properties for your future." },
+  { icon: HomeIcon, title: "Property", text: "Investment and holiday properties for your future." },
 ];
 
 const destinations = [
-  { img: "/images/tropical.jpg", title: "Island Escapes", sub: "Maldives · Mauritius · Zanzibar", cls: "md:row-span-2" },
+  { img: "/images/tropical.jpg", title: "Island Escapes", sub: "Maldives ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â· Mauritius ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â· Zanzibar", cls: "md:row-span-2" },
   { img: "/images/city.jpg", title: "City Breaks", sub: "Dubai & beyond", cls: "md:col-span-2" },
   { img: "/images/hotel.jpg", title: "Stay in Style", sub: "Resorts & boutique stays", cls: "" },
   { img: "/images/flight.jpg", title: "Fly Anywhere", sub: "Domestic & international", cls: "" },
@@ -57,17 +57,41 @@ export default function HomePage() {
     <main>
       {/* NAV */}
       <motion.nav initial={{ y: -80, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-        className="fixed top-0 z-50 flex w-full items-center justify-between bg-cream/70 px-6 py-2 backdrop-blur-md md:px-12">
+        className="fixed top-0 z-50 flex w-full items-center justify-between border-b border-forest/10 bg-cream/95 px-5 py-3 text-forest shadow-sm backdrop-blur-md md:px-8 xl:px-12">
         <a href="#top"><Image src="/images/logo.png" alt="Avora Group" width={120} height={90} className="h-14 w-auto" priority /></a>
-        <div className="hidden gap-10 text-xs tracking-[0.25em] uppercase md:flex">
+        <div className="hidden items-center gap-3 whitespace-nowrap text-sm font-medium tracking-[0.08em] uppercase text-forest xl:flex xl:gap-4 2xl:gap-6">
           <Link href="/travel" className="transition hover:text-gold">Travel</Link>
+          <Link href="/trips" className="transition hover:text-gold">Trips</Link>
+          <Link href="/destinations" className="transition hover:text-gold">Destinations</Link>
           <Link href="/stays" className="transition hover:text-gold">Stays</Link>
           <Link href="/about" className="transition hover:text-gold">About</Link>
+          <Link href="/specials" className="transition hover:text-gold">Specials</Link>
+          <Link href="/upcoming" className="transition hover:text-gold">Upcoming</Link>
+          <Link href="/calendar" className="transition hover:text-gold">Calendar</Link>
+          <Link href="/how-to-book" className="transition hover:text-gold">How to Book</Link>
+          <Link href="/gallery" className="transition hover:text-gold">Gallery</Link>
           <a href="#services" className="transition hover:text-gold">Services</a>
-          <a href="#destinations" className="transition hover:text-gold">Destinations</a>
           <a href="#why" className="transition hover:text-gold">Why Avora</a>
           <a href="#contact" className="transition hover:text-gold">Contact</a>
         </div>
+        <details className="relative xl:hidden">
+          <summary className="cursor-pointer list-none rounded-full border border-forest/30 px-4 py-2 text-sm font-medium tracking-[0.08em] uppercase text-forest [&::-webkit-details-marker]:hidden">Menu</summary>
+          <div className="absolute right-0 top-full z-50 mt-2 grid max-h-[75vh] min-w-56 gap-4 overflow-y-auto rounded-xl border border-forest/10 bg-cream p-5 text-sm font-medium tracking-[0.08em] uppercase text-forest shadow-xl">
+            <Link href="/travel">Travel</Link>
+            <Link href="/trips">Trips</Link>
+            <Link href="/destinations">Destinations</Link>
+            <Link href="/stays">Stays</Link>
+            <Link href="/about">About</Link>
+            <Link href="/specials">Specials</Link>
+            <Link href="/upcoming">Upcoming</Link>
+            <Link href="/calendar">Calendar</Link>
+            <Link href="/how-to-book">How to Book</Link>
+            <Link href="/gallery">Gallery</Link>
+            <a href="#services">Services</a>
+            <a href="#why">Why Avora</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </details>
       </motion.nav>
 
       {/* HERO */}
@@ -210,7 +234,7 @@ export default function HomePage() {
           <Reveal><p className="font-script text-6xl text-gold md:text-7xl">Let&apos;s Plan Your Next Trip</p></Reveal>
           <Reveal delay={0.15}>
             <div className="mt-12 flex flex-col items-center gap-4 text-lg">
-              <a href="tel:+27784689886" className="flex items-center gap-3 transition hover:text-gold"><Phone size={18} /> +27 78 468 9886</a>
+              <a href="tel:+27786942426" className="flex items-center gap-3 transition hover:text-gold"><Phone size={18} /> 078 694 2426</a>
               <a href="mailto:hello@avoratravel.co.za" className="flex items-center gap-3 transition hover:text-gold"><Mail size={18} /> hello@avoratravel.co.za</a>
               <span className="flex items-center gap-3"><MapPin size={18} /> Cape Town, South Africa</span>
             </div>

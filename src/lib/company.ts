@@ -1,8 +1,8 @@
 export const company = {
   name: "Avora Group",
-  phone: "+27 78 468 9886",
-  phoneHref: "tel:+27784689886",
-  whatsapp: "27784689886",
+  phone: "078 694 2426",
+  phoneHref: "tel:+27786942426",
+  whatsapp: "27786942426",
   email: "hello@avoratravel.co.za",
   address: "Cape Town, South Africa",
   site: process.env.NEXT_PUBLIC_SITE_URL ?? "https://avoratravel.co.za",

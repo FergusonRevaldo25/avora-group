@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
@@ -211,7 +211,7 @@ export default function HomePage() {
           <Reveal delay={0.15}>
             <div className="mt-12 flex flex-col items-center gap-4 text-lg">
               <a href="tel:+27784689886" className="flex items-center gap-3 transition hover:text-gold"><Phone size={18} /> +27 78 468 9886</a>
-              <a href="mailto:hello@avoragroup.co.za" className="flex items-center gap-3 transition hover:text-gold"><Mail size={18} /> hello@avoragroup.co.za</a>
+              <a href="mailto:hello@avoratravel.co.za" className="flex items-center gap-3 transition hover:text-gold"><Mail size={18} /> hello@avoratravel.co.za</a>
               <span className="flex items-center gap-3"><MapPin size={18} /> Cape Town, South Africa</span>
             </div>
           </Reveal>

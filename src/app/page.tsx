@@ -4,6 +4,8 @@ import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Plane, BedDouble, Briefcase, MapPin, Home as HomeIcon, ShieldCheck, Star, Heart, UserRound, Phone, Mail, Globe } from "lucide-react";
 import Reveal from "@/components/Reveal";
+import FooterLinks from "@/components/FooterLinks";
+import Testimonials from "@/components/Testimonials";
 import Link from "next/link";
 import ContactForm from "@/components/ContactForm";
 
@@ -60,6 +62,7 @@ export default function HomePage() {
         <div className="hidden gap-10 text-xs tracking-[0.25em] uppercase md:flex">
           <Link href="/travel" className="transition hover:text-gold">Travel</Link>
           <Link href="/stays" className="transition hover:text-gold">Stays</Link>
+          <Link href="/about" className="transition hover:text-gold">About</Link>
           <a href="#services" className="transition hover:text-gold">Services</a>
           <a href="#destinations" className="transition hover:text-gold">Destinations</a>
           <a href="#why" className="transition hover:text-gold">Why Avora</a>
@@ -178,6 +181,8 @@ export default function HomePage() {
         </Reveal>
       </section>
 
+      <Testimonials />
+
       {/* WHY */}
       <section id="why" className="mx-auto max-w-6xl px-6 pb-28">
         <div className="grid grid-cols-2 gap-10 md:grid-cols-5">
@@ -213,9 +218,11 @@ export default function HomePage() {
           <p className="mt-16 text-xs tracking-[0.4em] uppercase opacity-60">Local Getaways. International Dreams.</p>
         </div>
       </section>
+      <FooterLinks />
     </main>
   );
 }
+
 
 
 

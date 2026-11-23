@@ -6,11 +6,11 @@ const isProd = process.env.NODE_ENV === "production";
 // Everything else is locked to our own origin.
 const csp = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline'",
+  "script-src 'self' 'unsafe-inline' https://plausible.io",
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob:",
   "font-src 'self' data:",
-  "connect-src 'self'",
+  "connect-src 'self' https://plausible.io",
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",
@@ -44,3 +44,4 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
+

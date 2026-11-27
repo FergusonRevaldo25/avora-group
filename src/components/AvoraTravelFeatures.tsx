@@ -136,7 +136,18 @@ export default function AvoraTravelFeatures() {
         </div>
       </section>
 
-      <section id="availability" className="mx-auto max-w-7xl px-5">
+      <details className="group mx-auto max-w-7xl">
+  <summary className="mx-5 flex cursor-pointer list-none items-center justify-between gap-4 rounded-2xl border border-[#e5dfd3] bg-[#f7f3ea] px-5 py-4 text-[#123b32] shadow-sm">
+    <span>
+      <span className="block text-xs font-semibold uppercase tracking-[0.2em] text-[#a27b37]">Departure calendar</span>
+      <span className="mt-1 block text-sm text-[#52645e]">Check confirmed and unconfirmed dates</span>
+    </span>
+    <span className="shrink-0 text-sm font-semibold text-[#123b32]">
+      <span className="group-open:hidden">Open calendar</span>
+      <span className="hidden group-open:inline">Close calendar</span>
+    </span>
+  </summary>
+  <section id="availability" className="mx-auto max-w-7xl px-5">
         <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr]">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#a27b37]">Plan ahead</p>
@@ -170,6 +181,7 @@ export default function AvoraTravelFeatures() {
           </div>
         </div>
       </section>
+</details>
 
       <section id="current-deals" className="mx-auto max-w-7xl px-5">
         <div className="rounded-3xl bg-[#123b32] p-6 text-white md:flex md:items-center md:justify-between md:p-9">

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState, type FormEvent } from "react";
 
@@ -175,13 +176,22 @@ export default function AvoraCampaigns() {
               aria-hidden={offset !== 0}
               className="absolute inset-0 transition-[transform,opacity] duration-700 ease-in-out motion-reduce:transition-none"
               style={{
-                backgroundImage: `linear-gradient(90deg, rgba(10, 40, 33, .91), rgba(10, 40, 33, .55) 52%, rgba(10, 40, 33, .12)), url('${slide.image}')`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
+
                 transform: `translateX(${offset * 100}%)`,
                 opacity: offset === 0 ? 1 : 0.7,
               }}
             >
+              {Math.abs(offset) <= 1 && (
+                <Image
+                  src={slide.image}
+                  alt=""
+                  fill
+                  sizes="(max-width: 640px) 100vw, 1200px"
+                  loading="lazy"
+                  className="object-cover"
+                />
+              )}
+              <div className="absolute inset-0 bg-gradient-to-r from-[#0a2821]/95 via-[#0a2821]/60 to-[#0a2821]/15" />
               <div className="relative z-10 flex h-full items-center px-6 pb-14 pt-6 sm:px-10 sm:pb-12 md:px-12">
                 <div className="max-w-2xl">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#e7c982]">{slide.eyebrow}</p>
@@ -266,15 +276,25 @@ export default function AvoraCampaigns() {
               aria-label={`Ask Avora about ${campaign.title}`}
               aria-hidden={distance > 1 ? true : undefined}
               tabIndex={distance > 1 ? -1 : 0}
-              className="absolute left-1/2 top-0 h-full w-[86%] max-w-[500px] overflow-hidden rounded-3xl bg-cover bg-center text-white shadow-2xl transition-all duration-700 ease-in-out motion-reduce:transition-none"
+              className="absolute left-1/2 top-0 h-full w-[86%] max-w-[500px] overflow-hidden rounded-3xl text-white shadow-2xl transition-all duration-700 ease-in-out motion-reduce:transition-none"
               style={{
-                backgroundImage: `linear-gradient(180deg, rgba(10, 40, 33, .02), rgba(10, 40, 33, .84)), url('${campaign.image}')`,
                 transform: `translateX(calc(-50% + ${offset * 92}%)) translateZ(${-distance * 90}px) rotateY(${-offset * 16}deg) scale(${1 - distance * 0.12})`,
                 opacity: distance > 1 ? 0 : 1,
                 zIndex: campaigns.length - distance,
                 pointerEvents: distance > 1 ? "none" : "auto",
               }}
             >
+              {distance <= 1 && (
+                <Image
+                  src={campaign.image}
+                  alt=""
+                  fill
+                  sizes="(max-width: 768px) 86vw, 500px"
+                  loading="lazy"
+                  className="object-cover"
+                />
+              )}
+              <div className="absolute inset-0 bg-gradient-to-b from-[#0a2821]/5 to-[#0a2821]/85" />
               <div className="absolute inset-x-0 bottom-0 p-5 sm:p-7">
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#e7c982]">Avora destination</p>
                 <h3 className="mt-2 text-3xl font-semibold sm:text-4xl">{campaign.title}</h3>

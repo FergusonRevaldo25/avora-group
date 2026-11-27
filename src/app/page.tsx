@@ -113,8 +113,8 @@ export default function HomePage() {
             <span className="block overflow-hidden"><motion.span className="block" initial={{ y: "110%" }} animate={{ y: 0 }} transition={{ delay: 0.5, duration: 1.1, ease: [0.22, 1, 0.36, 1] }}>More Destinations.</motion.span></span>
             <span className="block overflow-hidden"><motion.span className="block italic" initial={{ y: "110%" }} animate={{ y: 0 }} transition={{ delay: 0.7, duration: 1.1, ease: [0.22, 1, 0.36, 1] }}>More Possibilities.</motion.span></span>
           </h1>
-          <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.2, duration: 1 }}
-            className="mt-6 font-script text-4xl text-[#8a6a1f] md:text-5xl">Your Journey, Our Priority</motion.p>
+          <p
+            className="mt-6 font-script text-4xl text-[#8a6a1f] md:text-5xl">Your Journey, Our Priority</p>
           <motion.a href="#contact" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.6 }}
             whileHover={{ scale: 1.06 }} whileTap={{ scale: 0.97 }}
             className="mt-10 inline-block rounded-full bg-forest px-9 py-4 text-xs font-medium tracking-[0.25em] uppercase text-cream shadow-xl">

@@ -18,7 +18,7 @@ const services = [
 ];
 
 const destinations = [
-  { img: "/images/tropical.jpg", title: "Island Escapes", sub: "Maldives ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â· Mauritius ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â· Zanzibar", cls: "md:row-span-2" },
+  { img: "/images/tropical.jpg", title: "Island Escapes", sub: "Maldives | Mauritius | Zanzibar", cls: "md:row-span-2" },
   { img: "/images/city.jpg", title: "City Breaks", sub: "Dubai & beyond", cls: "md:col-span-2" },
   { img: "/images/hotel.jpg", title: "Stay in Style", sub: "Resorts & boutique stays", cls: "" },
   { img: "/images/flight.jpg", title: "Fly Anywhere", sub: "Domestic & international", cls: "" },
@@ -45,6 +45,8 @@ function ParallaxImage({ src, alt, className = "" }: { src: string; alt: string;
   );
 }
 
+import AvoraTravelFeatures from "../components/AvoraTravelFeatures";
+
 export default function HomePage() {
   const heroRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
@@ -58,8 +60,8 @@ export default function HomePage() {
       {/* NAV */}
       <motion.nav initial={{ y: -80, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
         className="fixed top-0 z-50 flex w-full items-center justify-between border-b border-forest/10 bg-cream/95 px-5 py-3 text-forest shadow-sm backdrop-blur-md md:px-8 xl:px-12">
-        <a href="#top"><Image src="/images/logo.png" alt="Avora Group" width={120} height={90} className="h-14 w-auto" priority /></a>
-        <div className="hidden items-center gap-3 whitespace-nowrap text-sm font-medium tracking-[0.08em] uppercase text-forest xl:flex xl:gap-4 2xl:gap-6">
+        <a href="#top" className="shrink-0"><Image src="/images/logo.png" alt="Avora Group" width={120} height={90} className="h-14 w-auto shrink-0" priority /></a>
+        <div className="hidden min-w-0 items-center gap-2 whitespace-nowrap text-[13px] font-medium tracking-[0.04em] uppercase text-forest xl:flex 2xl:gap-4 2xl:text-sm">
           <Link href="/travel" className="transition hover:text-gold">Travel</Link>
           <Link href="/trips" className="transition hover:text-gold">Trips</Link>
           <Link href="/destinations" className="transition hover:text-gold">Destinations</Link>
@@ -243,6 +245,8 @@ export default function HomePage() {
         </div>
       </section>
       <FooterLinks />
+    
+      <AvoraTravelFeatures />
     </main>
   );
 }

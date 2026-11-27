@@ -1,10 +1,11 @@
-﻿"use client";
+"use client";
 import { useState } from "react";
 import Image from "next/image";
 import { BedDouble, Bath, Users } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import { field, label } from "@/components/ui";
 import { stays, isAvailable } from "@/lib/pricing";
+import StayAvailabilityCalendar from "@/components/StayAvailabilityCalendar";
 import { formatZAR, nightsBetween, stayQuote, todayISO } from "@/lib/trip";
 
 type Status = "idle" | "sending" | "sent" | "error";
@@ -92,6 +93,13 @@ export default function StaysExplorer() {
         ))}
       </div>
 
+      <StayAvailabilityCalendar
+        stay={stay}
+        checkIn={checkIn}
+        checkOut={checkOut}
+        onCheckInChange={setCheckIn}
+        onCheckOutChange={setCheckOut}
+      />
       <div id="book" className="mt-24 scroll-mt-28">
         {status === "sent" ? (
           <div role="status" className="mx-auto max-w-2xl rounded-2xl border border-gold/40 bg-white/70 p-10 text-center">

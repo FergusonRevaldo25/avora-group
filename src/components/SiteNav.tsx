@@ -4,8 +4,8 @@ import Image from "next/image";
 export default function SiteNav() {
   return (
     <nav className="fixed top-0 z-50 flex w-full items-center justify-between border-b border-forest/10 bg-cream/95 px-5 py-3 text-forest shadow-sm backdrop-blur-md md:px-8 xl:px-12">
-      <Link href="/"><Image src="/images/logo.png" alt="Avora Group" width={120} height={90} className="h-12 w-auto md:h-14" priority /></Link>
-      <div className="hidden items-center gap-3 whitespace-nowrap text-sm font-medium tracking-[0.08em] uppercase text-forest xl:flex xl:gap-4 2xl:gap-6">
+      <Link href="/" className="shrink-0"><Image src="/images/logo.png" alt="Avora Group" width={120} height={90} className="h-12 w-auto shrink-0 md:h-14" priority /></Link>
+      <div className="hidden min-w-0 items-center gap-2 whitespace-nowrap text-[13px] font-medium tracking-[0.04em] uppercase text-forest xl:flex 2xl:gap-4 2xl:text-sm">
         <Link href="/travel" className="transition hover:text-gold">Travel</Link>
         <Link href="/trips" className="transition hover:text-gold">Trips</Link>
         <Link href="/destinations" className="transition hover:text-gold">Destinations</Link>

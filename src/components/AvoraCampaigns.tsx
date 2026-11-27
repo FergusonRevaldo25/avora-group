@@ -5,24 +5,34 @@ import { useEffect, useState, type FormEvent } from "react";
 
 const campaigns = [
   {
-    title: "Greece",
-    description: "Coastal views, island colour and unforgettable days.",
-    image: "/images/greece.jpg",
+    title: "Namibia",
+    description: "Wide desert landscapes and distinctive lodge stays.",
+    image: "/images/namibia-lodge.jpg",
   },
   {
-    title: "Maldives",
-    description: "A tropical escape surrounded by clear blue water.",
-    image: "/images/maldives.jpg",
+    title: "Kyoto",
+    description: "Historic streets, architecture and Japanese culture.",
+    image: "/images/kyoto-street.jpg",
   },
   {
-    title: "Mauritius",
-    description: "Island scenery, warm beaches and time to unwind.",
-    image: "/images/mauritius.jpg",
+    title: "Swiss Alps",
+    description: "Mountain scenery and memorable rail journeys.",
+    image: "/images/swiss-alps-train.jpeg",
   },
   {
-    title: "Zanzibar",
-    description: "Coastal days, culture and a slower island rhythm.",
-    image: "/images/zanzibar.jpg",
+    title: "Victoria Falls",
+    description: "A dramatic natural landmark and surrounding wilderness.",
+    image: "/images/victoria-falls.jpg",
+  },
+  {
+    title: "Lodge Stays",
+    description: "Find a stay that makes time away feel special.",
+    image: "/images/luxury-lodge-room.jpg",
+  },
+  {
+    title: "Travel Support",
+    description: "Ask Avora about the services available for your journey.",
+    image: "/images/airport-concierge.jpg",
   },
 ];
 
@@ -179,6 +189,53 @@ export default function AvoraCampaigns() {
           />
         ))}
       </div>
+      <section id="avora-planning-visuals" aria-label="Plan your journey" className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <a
+          href="https://wa.me/27786942426?text=Hi%20Avora%2C%20I%20would%20like%20help%20planning%20a%20trip."
+          target="_blank"
+          rel="noreferrer"
+          className="relative flex min-h-64 items-end overflow-hidden rounded-2xl bg-cover bg-center p-5 text-white"
+          style={{ backgroundImage: "linear-gradient(180deg, rgba(10,40,33,.04), rgba(10,40,33,.82)), url('/images/travel-consultation.jpeg')" }}
+        >
+          <div>
+            <h3 className="text-xl font-semibold">Plan with Avora</h3>
+            <p className="mt-1 text-sm text-white/90">Ask us about destinations, dates and trip details.</p>
+          </div>
+        </a>
+
+        <Link
+          href="/how-to-book"
+          className="relative flex min-h-64 items-end overflow-hidden rounded-2xl bg-cover bg-center p-5 text-white"
+          style={{ backgroundImage: "linear-gradient(180deg, rgba(10,40,33,.04), rgba(10,40,33,.82)), url('/images/airport-departures.jpg')" }}
+        >
+          <div>
+            <h3 className="text-xl font-semibold">Start your journey</h3>
+            <p className="mt-1 text-sm text-white/90">See how to prepare and what to expect.</p>
+          </div>
+        </Link>
+
+        <Link
+          href="/trips"
+          className="relative flex min-h-64 items-end overflow-hidden rounded-2xl bg-cover bg-center p-5 text-white"
+          style={{ backgroundImage: "linear-gradient(180deg, rgba(10,40,33,.04), rgba(10,40,33,.82)), url('/images/coach-interior.jpg')" }}
+        >
+          <div>
+            <h3 className="text-xl font-semibold">Travel together</h3>
+            <p className="mt-1 text-sm text-white/90">Transport arrangements are confirmed for each trip.</p>
+          </div>
+        </Link>
+
+        <Link
+          href="/how-to-book"
+          className="relative flex min-h-64 items-end overflow-hidden rounded-2xl bg-cover bg-center p-5 text-white"
+          style={{ backgroundImage: "linear-gradient(180deg, rgba(10,40,33,.04), rgba(10,40,33,.82)), url('/images/travel-essentials.jpeg')" }}
+        >
+          <div>
+            <h3 className="text-xl font-semibold">Get ready to go</h3>
+            <p className="mt-1 text-sm text-white/90">Find practical information before you travel.</p>
+          </div>
+        </Link>
+      </section>
       <div className="grid overflow-hidden rounded-3xl border border-[#e7e0d4] bg-[#f7f3ea] md:grid-cols-[.9fr_1.1fr]">
         <div className="flex flex-col justify-center p-6 md:p-9">
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#a27b37]">Travel notes from Avora</p>

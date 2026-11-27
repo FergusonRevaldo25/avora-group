@@ -47,6 +47,8 @@ function ParallaxImage({ src, alt, className = "" }: { src: string; alt: string;
 
 import AvoraTravelFeatures from "../components/AvoraTravelFeatures";
 
+import AvoraCampaigns from "../components/AvoraCampaigns";
+
 export default function HomePage() {
   const heroRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
@@ -121,9 +123,11 @@ export default function HomePage() {
         </motion.div>
 
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.2 }} className="absolute bottom-8 left-1/2 -translate-x-1/2">
-          <motion.div animate={{ y: [0, 10, 0] }} transition={{ repeat: Infinity, duration: 1.8 }} className="h-10 w-px bg-forest/60" />
+          <motion.div animate={{ y: [0, 10, 0] }} transition={{ repeat: Infinity, duration: 1.8 }} className="h-1
+      0 w-px bg-forest/60" />
         </motion.div>
       </section>
+      <AvoraCampaigns />
 
       {/* ABOUT */}
       <section className="mx-auto grid max-w-6xl items-center gap-16 px-6 py-28 md:grid-cols-2">

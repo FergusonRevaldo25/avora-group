@@ -5,10 +5,10 @@ import { useMemo, useState } from "react";
 const WHATSAPP = "https://wa.me/27786942426";
 
 const destinations = [
-  { name: "Greece", region: "Europe", note: "Coastal towns, history and island escapes." },
-  { name: "Maldives", region: "Indian Ocean", note: "A tropical escape with clear-water scenery." },
-  { name: "Mauritius", region: "Indian Ocean", note: "Island beaches, nature and relaxed stays." },
-  { name: "Zanzibar", region: "East Africa", note: "A blend of coastline, culture and island life." },
+  { name: "Morocco", region: "North Africa", note: "Colourful courtyards, architecture and local culture.", image: "/images/morocco-riad.jpg" },
+  { name: "Kruger Safari", region: "South Africa", note: "Wildlife, open landscapes and a lodge stay.", image: "/images/kruger-safari.jpg" },
+  { name: "Cape Town Stays", region: "South Africa", note: "Boutique accommodation and city views.", image: "/images/boutique-hotel-cape-town.jpg" },
+  { name: "Group Journeys", region: "Travel together", note: "Shared experiences with fellow travellers.", image: "/images/group-travellers.jpg" },
 ];
 
 const trips: Array<{ title: string; destination: string; month: string; price: number; href: string }> = [];
@@ -188,7 +188,7 @@ export default function AvoraTravelFeatures() {
         <h2 className="mt-2 text-3xl font-semibold text-[#123b32]">Find your kind of escape</h2>
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {destinations.map((item) => (
-            <a key={item.name} href={whatsappLink(`Hi Avora, please tell me about trip and stay options for ${item.name}.`)} target="_blank" rel="noreferrer" className="group min-h-56 overflow-hidden rounded-2xl bg-cover bg-center p-5 text-white shadow-sm transition hover:-translate-y-1" style={{ backgroundImage: `linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.72)), url('/images/${item.name.toLowerCase()}.jpg')` }}>
+            <a key={item.name} href={whatsappLink(`Hi Avora, please tell me about trip and stay options for ${item.name}.`)} target="_blank" rel="noreferrer" className="group min-h-56 overflow-hidden rounded-2xl bg-cover bg-center p-5 text-white shadow-sm transition hover:-translate-y-1" style={{ backgroundImage: `linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.72)), url('${item.image}')` }}>
               <span className="text-xs uppercase tracking-widest text-white/80">{item.region}</span>
               <h3 className="mt-20 text-2xl font-semibold">{item.name}</h3>
               <p className="mt-1 text-sm text-white/90">{item.note}</p>

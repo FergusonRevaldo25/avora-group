@@ -252,7 +252,7 @@ export default function AvoraCampaigns() {
       </div>
 
       <div
-        className="relative mx-auto mt-8 h-[340px] w-full max-w-5xl overflow-hidden [perspective:1400px] sm:h-[400px]"
+        className="relative mx-auto mt-8 h-[300px] w-full max-w-5xl overflow-hidden [perspective:1100px] sm:h-[360px]"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
         onFocusCapture={() => setIsPaused(true)}
@@ -295,12 +295,14 @@ export default function AvoraCampaigns() {
                 />
               )}
               <div className="absolute inset-0 bg-gradient-to-b from-[#0a2821]/5 to-[#0a2821]/85" />
-              <div className="absolute inset-x-0 bottom-0 p-5 sm:p-7">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#e7c982]">Avora destination</p>
-                <h3 className="mt-2 text-3xl font-semibold sm:text-4xl">{campaign.title}</h3>
-                <p className="mt-2 max-w-sm text-sm leading-6 text-white/90">{campaign.description}</p>
-                <span className="mt-5 inline-flex rounded-full bg-[#e7c982] px-5 py-2.5 text-sm font-semibold text-[#153d34]">Ask Avora</span>
-              </div>
+              {distance === 0 && (
+                <div className="absolute inset-x-0 bottom-0 p-5 sm:p-7">
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#e7c982]">Avora destination</p>
+                  <h3 className="mt-2 text-3xl font-semibold sm:text-4xl">{campaign.title}</h3>
+                  <p className="mt-2 max-w-sm text-sm leading-6 text-white/90">{campaign.description}</p>
+                  <span className="mt-5 inline-flex rounded-full bg-[#e7c982] px-5 py-2.5 text-sm font-semibold text-[#153d34]">Ask Avora</span>
+                </div>
+              )}
             </a>
           );
         })}

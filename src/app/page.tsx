@@ -1,7 +1,7 @@
-"use client";
-import { useRef } from "react";
+
+
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
+
 import { Plane, BedDouble, Briefcase, MapPin, Home as HomeIcon, ShieldCheck, Star, Heart, UserRound, Phone, Mail, Globe } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import FooterLinks from "@/components/FooterLinks";
@@ -33,14 +33,9 @@ const promises = [
 ];
 
 function ParallaxImage({ src, alt, className = "" }: { src: string; alt: string; className?: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
   return (
-    <div ref={ref} className={`relative overflow-hidden ${className}`}>
-      <motion.div style={{ y, scale: 1.18 }} className="absolute inset-0">
-        <Image src={src} alt={alt} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
-      </motion.div>
+    <div className={`relative overflow-hidden ${className}`}>
+      <Image src={src} alt={alt} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
     </div>
   );
 }
@@ -50,18 +45,11 @@ import AvoraTravelFeatures from "../components/AvoraTravelFeatures";
 import AvoraCampaigns from "../components/AvoraCampaigns";
 
 export default function HomePage() {
-  const heroRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
-  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
-  const bgScale = useTransform(scrollYProgress, [0, 1], [1.05, 1.25]);
-  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "-25%"]);
-  const fade = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
 
   return (
     <main>
       {/* NAV */}
-      <motion.nav initial={{ y: -80, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-        className="fixed top-0 z-50 flex w-full items-center justify-between border-b border-forest/10 bg-cream/95 px-5 py-3 text-forest shadow-sm backdrop-blur-md md:px-8 xl:px-12">
+      <nav className="fixed top-0 z-50 flex w-full items-center justify-between border-b border-forest/10 bg-cream/95 px-5 py-3 text-forest shadow-sm backdrop-blur-md md:px-8 xl:px-12">
         <a href="#top" className="shrink-0"><Image src="/images/logo.png" alt="Avora Group" width={120} height={90} className="h-14 w-auto shrink-0" priority /></a>
         <div className="hidden min-w-0 items-center gap-2 whitespace-nowrap text-[13px] font-medium tracking-[0.04em] uppercase text-forest xl:flex 2xl:gap-4 2xl:text-sm">
           <Link href="/travel" className="transition hover:text-gold">Travel</Link>
@@ -96,36 +84,32 @@ export default function HomePage() {
             <a href="#contact">Contact</a>
           </div>
         </details>
-      </motion.nav>
+      </nav>
 
       {/* HERO */}
-      <section id="top" ref={heroRef} className="relative flex min-h-screen items-center overflow-hidden">
-        <motion.div style={{ y: bgY, scale: bgScale }} className="absolute inset-0 -z-10">
+      <section id="top" className="relative flex min-h-screen items-center overflow-hidden">
+        <div className="absolute inset-0 -z-10 hero-image-pop">
           <Image src="/images/hero.jpg" alt="Traveller overlooking the sea at sunset" fill priority sizes="100vw" className="object-cover object-[70%_center] md:object-center" />
           <div className="absolute inset-0 bg-gradient-to-r from-cream/85 via-cream/35 to-transparent" />
           <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-cream to-transparent" />
-        </motion.div>
+        </div>
 
-        <motion.div style={{ y: textY, opacity: fade }} className="max-w-3xl px-6 pt-20 md:px-16">
-          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3, duration: 1 }}
-            className="mb-5 text-xs tracking-[0.4em] uppercase">Travel &nbsp;|&nbsp; Stay &nbsp;|&nbsp; Explore &nbsp;|&nbsp; More</motion.p>
+        <div className="max-w-3xl px-6 pt-20 md:px-16">
+          <p className="mb-5 text-xs tracking-[0.4em] uppercase">Travel &nbsp;|&nbsp; Stay &nbsp;|&nbsp; Explore &nbsp;|&nbsp; More</p>
           <h1 className="font-display text-5xl font-semibold leading-[0.95] md:text-8xl">
-            <span className="block overflow-hidden"><motion.span className="block" initial={{ y: "110%" }} animate={{ y: 0 }} transition={{ delay: 0.5, duration: 1.1, ease: [0.22, 1, 0.36, 1] }}>More Destinations.</motion.span></span>
-            <span className="block overflow-hidden"><motion.span className="block italic" initial={{ y: "110%" }} animate={{ y: 0 }} transition={{ delay: 0.7, duration: 1.1, ease: [0.22, 1, 0.36, 1] }}>More Possibilities.</motion.span></span>
+            <span className="block">More Destinations.</span>
+            <span className="block italic">More Possibilities.</span>
           </h1>
           <p
             className="mt-6 font-script text-4xl text-[#8a6a1f] md:text-5xl">Your Journey, Our Priority</p>
-          <motion.a href="#contact" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.6 }}
-            whileHover={{ scale: 1.06 }} whileTap={{ scale: 0.97 }}
-            className="mt-10 inline-block rounded-full bg-forest px-9 py-4 text-xs font-medium tracking-[0.25em] uppercase text-cream shadow-xl">
+          <a href="#contact" className="mt-10 inline-block rounded-full bg-forest px-9 py-4 text-xs font-medium tracking-[0.25em] uppercase text-cream shadow-xl transition-transform hover:scale-105 active:scale-[0.97]">
             Plan Your Next Trip
-          </motion.a>
-        </motion.div>
+          </a>
+        </div>
 
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.2 }} className="absolute bottom-8 left-1/2 -translate-x-1/2">
-          <motion.div animate={{ y: [0, 10, 0] }} transition={{ repeat: Infinity, duration: 1.8 }} className="h-1
-      0 w-px bg-forest/60" />
-        </motion.div>
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2" aria-hidden="true">
+          <div className="h-10 w-px bg-forest/60" />
+        </div>
       </section>
       <AvoraCampaigns />
 
@@ -155,12 +139,11 @@ export default function HomePage() {
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {services.map((s, i) => (
               <Reveal key={s.title} delay={i * 0.08}>
-                <motion.div whileHover={{ y: -8 }} transition={{ type: "spring", stiffness: 250, damping: 18 }}
-                  className="h-full rounded-2xl border border-gold/30 bg-forest-deep/60 p-8">
+                <div className="h-full rounded-2xl border border-gold/30 bg-forest-deep/60 p-8 transition-transform duration-300 hover:-translate-y-2">
                   <s.icon className="mb-5 h-9 w-9 text-gold" strokeWidth={1.3} />
                   <h3 className="font-display text-2xl">{s.title}</h3>
                   <p className="mt-3 opacity-75">{s.text}</p>
-                </motion.div>
+                </div>
               </Reveal>
             ))}
           </div>

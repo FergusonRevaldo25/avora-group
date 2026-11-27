@@ -3,6 +3,40 @@
 import Link from "next/link";
 import { useEffect, useState, type FormEvent } from "react";
 
+const promoSlides = [
+  {
+    eyebrow: "AVORA ESCAPE SALE",
+    title: "Up to 50% off selected journeys",
+    description: "Ask Avora about current offers, dates and terms.",
+    button: "Explore the sale",
+    href: "/specials",
+    image: "/images/avora-hero.jpg",
+  },
+  {
+    eyebrow: "MOROCCO IN FOCUS",
+    title: "A stay with stories to tell",
+    description: "Explore a different side of travel with Avora.",
+    button: "Explore destinations",
+    href: "/destinations",
+    image: "/images/morocco-riad.jpg",
+  },
+  {
+    eyebrow: "NAMIBIA, UNDER THE STARS",
+    title: "Make room for a little wonder",
+    description: "Ask Avora about journeys and stays that fit your plans.",
+    button: "Explore destinations",
+    href: "/destinations",
+    image: "/images/namibia-lodge.jpg",
+  },
+  {
+    eyebrow: "KYOTO MOMENTS",
+    title: "Let the journey take you somewhere new",
+    description: "Discover travel inspiration and ask Avora what is available.",
+    button: "Explore trips",
+    href: "/trips",
+    image: "/images/kyoto-street.jpg",
+  },
+];
 const campaigns = [
   {
     title: "Namibia",
@@ -46,6 +80,26 @@ export default function AvoraCampaigns() {
   const [isPaused, setIsPaused] = useState(false);
   const [signupStatus, setSignupStatus] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [promoIndex, setPromoIndex] = useState(0);
+  const [promoPaused, setPromoPaused] = useState(false);
+  const [promoHovered, setPromoHovered] = useState(false);
+
+  function movePromo(direction: number) {
+    setPromoIndex((current) => (current + direction + promoSlides.length) % promoSlides.length);
+  }
+
+  useEffect(() => {
+    if (promoPaused || promoHovered || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
+
+    const timer = window.setInterval(() => {
+      setPromoIndex((current) => (current + 1) % promoSlides.length);
+    }, 5200);
+
+    return () => window.clearInterval(timer);
+  }, [promoPaused, promoHovered]);
+
   useEffect(() => {
     if (isPaused || campaigns.length < 2 || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       return;
@@ -99,24 +153,79 @@ export default function AvoraCampaigns() {
 
   return (
     <section aria-label="Avora travel offers and updates" className="mx-auto w-full max-w-7xl space-y-8 px-5 py-12 md:py-16">
-      <div
-        className="relative overflow-hidden rounded-3xl bg-cover bg-center px-6 py-10 text-white shadow-md md:px-12 md:py-14"
-        style={{
-          backgroundImage: "linear-gradient(90deg, rgba(10, 40, 33, .88), rgba(10, 40, 33, .18)), url('/images/hero.jpg')",
+      <section
+        aria-label="Avora promotional offers"
+        className="relative isolate h-[270px] overflow-hidden rounded-3xl bg-[#123b32] text-white shadow-md sm:h-[230px]"
+        onMouseEnter={() => setPromoHovered(true)}
+        onMouseLeave={() => setPromoHovered(false)}
+        onFocusCapture={() => setPromoHovered(true)}
+        onBlurCapture={(event) => {
+          if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+            setPromoHovered(false);
+          }
         }}
       >
-        <div className="max-w-2xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#e7c982]">Avora journeys</p>
-          <h2 className="mt-3 text-3xl font-semibold leading-tight md:text-5xl">Your next escape starts here.</h2>
-          <p className="mt-4 max-w-xl text-sm leading-6 text-white/90 md:text-base">
-            Discover considered trips and stays, with Avora helping you plan the details.
-          </p>
-          <Link href="/trips" className="mt-6 inline-flex rounded-full bg-[#e7c982] px-6 py-3 text-sm font-semibold text-[#153d34] transition hover:bg-white">
-            Explore trips
-          </Link>
-        </div>
-      </div>
+        {promoSlides.map((slide, index) => {
+          let offset = (index - promoIndex + promoSlides.length) % promoSlides.length;
+          if (offset > promoSlides.length / 2) offset -= promoSlides.length;
 
+          return (
+            <article
+              key={slide.title}
+              aria-hidden={offset !== 0}
+              className="absolute inset-0 transition-[transform,opacity] duration-700 ease-in-out motion-reduce:transition-none"
+              style={{
+                backgroundImage: `linear-gradient(90deg, rgba(10, 40, 33, .91), rgba(10, 40, 33, .55) 52%, rgba(10, 40, 33, .12)), url('${slide.image}')`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                transform: `translateX(${offset * 100}%)`,
+                opacity: offset === 0 ? 1 : 0.7,
+              }}
+            >
+              <div className="relative z-10 flex h-full items-center px-6 pb-14 pt-6 sm:px-10 sm:pb-12 md:px-12">
+                <div className="max-w-2xl">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#e7c982]">{slide.eyebrow}</p>
+                  <h2 className="mt-2 text-2xl font-semibold leading-tight sm:text-3xl md:text-4xl">{slide.title}</h2>
+                  <p className="mt-2 max-w-xl text-sm leading-5 text-white/90 sm:text-base">{slide.description}</p>
+                  <Link
+                    href={slide.href}
+                    tabIndex={offset === 0 ? 0 : -1}
+                    className="mt-4 inline-flex rounded-full bg-[#e7c982] px-5 py-2.5 text-sm font-semibold text-[#153d34] transition hover:bg-white"
+                  >
+                    {slide.button}
+                  </Link>
+                </div>
+              </div>
+            </article>
+          );
+        })}
+
+        <div className="absolute bottom-3 right-4 z-20 flex items-center gap-2 sm:bottom-4 sm:right-6">
+          <button type="button" aria-label="Previous promotion" onClick={() => movePromo(-1)} className="grid h-9 w-9 place-items-center rounded-full border border-white/50 bg-black/25 text-white hover:bg-black/50">&lt;</button>
+          <div className="flex items-center gap-1.5">
+            {promoSlides.map((slide, index) => (
+              <button
+                key={slide.title}
+                type="button"
+                aria-label={`Show promotion ${index + 1}`}
+                aria-current={promoIndex === index ? "true" : undefined}
+                onClick={() => setPromoIndex(index)}
+                className={`h-2 rounded-full transition-all ${promoIndex === index ? "w-6 bg-[#e7c982]" : "w-2 bg-white/70"}`}
+              />
+            ))}
+          </div>
+          <button
+            type="button"
+            aria-label={promoPaused ? "Resume promotions" : "Pause promotions"}
+            aria-pressed={promoPaused}
+            onClick={() => setPromoPaused(!promoPaused)}
+            className="rounded-full border border-white/50 bg-black/25 px-3 py-2 text-xs text-white hover:bg-black/50"
+          >
+            {promoPaused ? "Play" : "Pause"}
+          </button>
+          <button type="button" aria-label="Next promotion" onClick={() => movePromo(1)} className="grid h-9 w-9 place-items-center rounded-full border border-white/50 bg-black/25 text-white hover:bg-black/50">&gt;</button>
+        </div>
+      </section>
       <div className="flex items-end justify-between gap-4">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#a27b37]">Find your kind of escape</p>
